@@ -42,6 +42,8 @@ jobs:
 
           rsync -a --delete \
             --exclude ".git/" \
+            --exclude "target/" \
+            --exclude ".github/" \
             ./ "$TARGET_DIR/"
 
       - name: Commit & push changes to repo B
