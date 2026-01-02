@@ -28,15 +28,18 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Sync repo A into subfolder in repo B
+      - name: Sync repo A into subfolder in repo B (lowercase name)
         shell: bash
         run: |
           set -euo pipefail
 
-          # Haal alleen de repo-naam uit OWNER/REPO
+          # Repo-naam uit OWNER/REPO halen
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
 
-          TARGET_DIR="target/${REPO_NAME}"
+          # Naar lowercase omzetten
+          REPO_NAME_LOWER="${REPO_NAME,,}"
+
+          TARGET_DIR="target/${REPO_NAME_LOWER}"
 
           mkdir -p "$TARGET_DIR"
 
